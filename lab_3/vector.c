@@ -12,7 +12,7 @@ void initVector(vector *v, int size, compareFunc compare, deleteUnitV del) {
     v->alloMem = size;
     v->compare = compare;
     v->del = del;
-    v->arr = calloc(size,sizeof(void *));
+    v->arr = malloc(size,sizeof(void *));
     int i;
     for(i = 0; i < size; i++)
         v->arr[i] = malloc(sizeof(void*));
