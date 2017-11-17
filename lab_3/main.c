@@ -41,8 +41,6 @@ int main() {
     for (i = 0; i < v.size; i++)
         printf("%d ", *(int *) v.arr[i]);
     deleteVector(&v);
-    free(a);
-    free(q);
 /*    MATRIX matrix;
     int n = 3, m = 3;
     initMatrix(&matrix, n, m, compareInt,deleteInV);
