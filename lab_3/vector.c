@@ -69,14 +69,16 @@ void deleteVector(vector *v) {
 
 void initMatrix(MATRIX *matrix, int size_n, int size_m, compareFunc compare, deleteUnitV del) {
     matrix->size_n = size_n;
+    matrix->original_size_n = size_n;
     matrix->size_m = size_m;
     matrix->compare = compare;
     matrix->del = del;
     int i;
     matrix->matr = malloc(sizeof(vector *) * size_n);
-/*    for (i = 0; i < size_n; i++) {
+    for (i = 0; i < size_n; i++) {
+        matrix->matr[i] = malloc(sizeof(vector));
         initVector(matrix->matr[i], size_m, compare, del);
-    }*/
+    }
 };
 
 void getSizeMatrix(const MATRIX *matrix, int *i, int *j) {
@@ -93,34 +95,41 @@ int changeInMatrix(MATRIX *matrix, int n, int m, void *x) {
     return 0;
 };
 
-void addLine(MATRIX *matrix, int n, int position, vector *data) {
-    int i, count;
+void addLine(MATRIX *matrix, const int position, vector *data) { //position: 0 - column, 1 - row
+    int i;
+    //int count;
     if (position == 0) {
-        if (data->size < matrix->size_n) count = data->size;
-        else count = matrix->size_n;
-        for (i = 0; i < count; i++)
+        /*if (data->size < matrix->size_n) count = data->size;
+        else count = matrix->size_n; */  //we think that our matrix have not empty cells
+        for (i = 0; i <  matrix->size_n;i++)
             addInVector(matrix->matr[i], data->container[i]);
-        matrix->size_m = matrix->matr[0]->size;
+        matrix->size_m++;
     } else {
-        matrix->size_n++;
-        matrix->matr = realloc(matrix->matr, matrix->size_n);
-        initVector(&matrix->matr[matrix->size_n - 1], matrix->size_m, matrix->compare, matrix->del);
-        if (data->size < matrix->size_m) count = data->size;
-        else count = matrix->size_m;
-        for (i = 0; i < count; i++) {
+        matrix->size_n++;   //way if we put argument's vector in a cell
+        matrix->matr = realloc(matrix->matr, (matrix->size_n*sizeof(vector*)));
+        matrix->matr[matrix->size_n - 1] = data;
+
+/*        matrix->matr[matrix->size_n - 1] = malloc(sizeof(vector));     way if we want just copy data from argument's vector
+        initVector(matrix->matr[matrix->size_n - 1], matrix->size_m, matrix->compare, matrix->del);
+        for (i = 0; i < matrix->size_m; i++) {
             addInVector(matrix->matr[matrix->size_n - 1], data->container[i]);
-        }
+        }*/
+
+/*        if (data->size < matrix->size_m) count = data->size;
+        else count = matrix->size_m;*/
     }
 };
 
 void deleteMatrix(MATRIX *matrix) {
     int i;
     for (i = 0; i < matrix->size_n; i++) {
-        vector* v = matrix->matr[i];
-        deleteVector(v);
+        deleteVector(matrix->matr[i]);
+        if(i < matrix->original_size_n)
+            free(matrix->matr[i]);
     }
     free(matrix->matr);
 };
+
 
 
 
