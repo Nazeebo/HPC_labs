@@ -6,4 +6,5 @@ exe: main.c vector.h lib
 lib: vector.c vector.h
 	gcc -shared vector.c -fPIC -o lib-vector.so
 
-clean: -rm vector lib-vector.so 2>/dev/null
+clean: 
+	rm -rf vector lib-vector.so 2>/dev/null
