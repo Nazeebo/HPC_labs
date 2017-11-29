@@ -58,39 +58,67 @@ void testVector() {
     deleteVector(&v);
 };
 
+void printMatrix(const MATRIX* matrix){
+    int i,j;
+    for(i = 0;i<matrix->size_n;i++){
+        if(i == 0)
+            printf("/ ");
+            else if(i == matrix->size_n-1)
+                printf("\\ ");
+        else printf("| ");
+        for(j = 0;j<matrix->matr[i]->size;j++)
+            printf("%d ", *(int*)matrix->matr[i]->container[j]);
+        if(i == 0)
+            printf("\\ \n");
+        else if(i == matrix->size_n-1)
+            printf("/ \n");
+        else printf("| \n");
+    }
+};
+
 void testMatrix() {
     MATRIX matrix;
     int i, j;
     int n = 3, m = 3;
+    printf("Creating matrix with %d rows and %d columns with random elements:\n",n,m);
     initMatrix(&matrix, n, m, compareInt, deleteInV);
     for (i = 0; i < n; i++) {
-        vector v;
-        initVector(&v, m, compareInt, deleteInV);
-        for (j = 0; j < m; j++) {
-            addInVector(&v, getIntPointer(rand() % 100));
-        }
-        printVector(&v);
-        matrix.matr[i] = &v;
-        addInVector(&v,getIntPointer(rand() % 100));
-        printf("\n");
-        deleteVector(&v);
+        for (j = 0; j < m; j++)
+            addInVector(matrix.matr[i], getIntPointer(rand() % 100));
     }
-    vector* v = matrix.matr[0];
-    printVector(v);
-    printf(" %d ", *(int*)matrix.matr[0]->container[2]);
-    /*addLine( &matrix, 1 , 1, v);
-    changeInMatrix( &matrix, 2, 2, );
-    int cc,ss;
-    getSizeMatrix( &matrix, &cc , &ss);
+    printMatrix(&matrix);
 
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < m; j++){
-            printf("%d\n", *(int*)matrix.matr[i].arr[k]);
-        }
-        printf("\n");
-    }*/
+    printf("Changing 1st element in 1st row to 7:\n");
+    changeInMatrix(&matrix,0,0,getIntPointer(7));
+    printMatrix(&matrix);
 
-    //deleteMatrix(&matrix);
+    printf("Adding a column with random elements to matrix:\n");
+    vector v;
+    initVector(&v, n, compareInt, deleteInV);
+    for (i = 0; i < n; i++)
+        addInVector(&v, getIntPointer(rand() % 100));
+    addLine(&matrix,0,&v);
+    printMatrix(&matrix);
+
+    printf("Adding a row with random elements to matrix:\n");
+    vector b;
+    initVector(&b, matrix.size_m, compareInt, deleteInV);
+    for (i = 0; i < matrix.size_m; i++)
+        addInVector(&b, getIntPointer(rand() % 100));
+    addLine(&matrix,1,&b);
+    printMatrix(&matrix);
+
+    printf("Sorting all rows(vectors) in matrix:\n");
+    for (i = 0; i < matrix.size_n; i++)
+        quickSort(matrix.matr[i],0,matrix.size_m-1,compareInt);
+    printMatrix(&matrix);
+
+    printf("Size of matrix before deleting:\n");
+    getSizeMatrix(&matrix,&i,&j);
+    printf("%d %d\n",i,j);
+
+    deleteMatrix(&matrix);
+    free(v.container);
 }
 
 
@@ -102,3 +130,4 @@ int main() {
 
     return 0;
 }
+
