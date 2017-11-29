@@ -20,6 +20,7 @@ typedef struct {
 typedef struct {
     vector **matr;
     int size_n;
+    int original_size_n;
     int size_m;
     compareFunc compare;
     deleteUnitV del;
@@ -36,7 +37,7 @@ int changeInVector(vector *v, void *x, int n);
 
 int changeInMatrix(MATRIX *matrix, int n, int m, void *x);
 
-void addLine(MATRIX *matrix, int n, int position, vector *data); //position: 0 - line, 1 - column
+void addLine(MATRIX *matrix,const int position, vector *data);
 void quickSort(vector *v, int left, int right, compareFunc compare);
 
 int getSizeVector(const vector v);
@@ -49,4 +50,5 @@ void deleteMatrix(MATRIX *matrix);
 
 
 #endif //MYVECTOR_VECTOR_H
+
 
