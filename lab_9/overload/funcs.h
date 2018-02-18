@@ -9,13 +9,11 @@
 
 
 bool palindrome(const char arr[]);
-void printMax(const char arr[]);
-void printMax(const int arr[]);
+void printMax(const char arr[], bool isDigit);
 bool growSeq(const char arr[]);
-bool growSeq(const int arr[]);
-void afterGrow(const char arr[]);
-void afterGrow(const int arr[]);
-void getSequence(const char arr[], int out[]);
+void afterGrow(const char arr[], bool isDigit);
+void changingWayOfStore(const char arr[], char out[]);
+void printArray(const char arr[]);
 
 
 #endif //OVERLOAD_FUNCS_H

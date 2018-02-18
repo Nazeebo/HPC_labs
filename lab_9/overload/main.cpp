@@ -10,18 +10,18 @@ int main() {
         if (in.eof())
             break;
 
-        char buf[100];
-        char *data = new char[100];
+        bool isDigit = false;
+        char buf[100],data[100];
+        fill(data, data+100,0);
         in >> buf;
 
         if (isdigit(buf[0])) {
-            delete[] data;
-            int data[100];
-            getSequence(buf, data);
+            changingWayOfStore(buf, data);
+            isDigit = true;
         } else strcpy(data, buf);
 
-        if (palindrome(data)) printMax(data);
-        else if (growSeq(data)) afterGrow(data);
+        if (palindrome(data)) printMax(data,isDigit);
+        else if (growSeq(data)) afterGrow(data,isDigit);
         else cout << data << " ";
     }
 
