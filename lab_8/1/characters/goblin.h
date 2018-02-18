@@ -8,18 +8,15 @@
 
 class Goblin {
     public:
-        Goblin(int position);
+        Goblin();
+        void getStats();
         int getHp();
-        int getPosition();
-        void setPosition(int position);
         int getAttack();
         int getRange();
         int takeDamage(int damage);
-        void move(int way);  //1 - right, 0 - left
         int bomb(); //active skill
-        bool isDead();
     private:
-        int _hp,_attack,_position,_range,_bombStatus,_maxHp;
+        int _hp,_attack,_range,_bombStatus,_maxHp;
 };
 
 

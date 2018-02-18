@@ -8,20 +8,17 @@
 
 class Mage {
     public:
-        Mage(int position);
+        Mage();
+        void getStats();
         int getHp();
         int getArmor();
         int getMp();
-        int getPosition();
-        void setPosition(int position);
         int getAttack();
         int getRange();
         int takeDamage(int damage);
-        void move(int way);
-        void oneOfEight(int condition);
-        bool isDead(); //active skill
+        void oneOfEight(int condition); //active skill
     private:
-        int _hp,_mp,_armor,_attack,_range,_position;
+        int _hp,_mp,_armor,_attack,_range;
 };
 
 

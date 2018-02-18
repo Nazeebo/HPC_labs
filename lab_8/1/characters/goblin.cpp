@@ -6,28 +6,24 @@
 #include <iostream>
 #include <time.h>
 
-bool cowardice(){
+using namespace std;
+
+bool cowardice() {
     srand(time(NULL));
     int dodgeChance = 50;
-    if(rand()%100 < dodgeChance)
-        return true;
-    else return false;
+    return rand() % 100 < dodgeChance;
 }
 
-Goblin::Goblin(int position) {
-    _position = position;
+Goblin::Goblin() {
+    _hp = 40;
+    _maxHp = _hp;
+    _attack = 10;
+    _range = 1;
+    _bombStatus = 0;
 }
 
 int Goblin::getHp() {
     return _hp;
-}
-
-int Goblin::getPosition() {
-    return _position;
-}
-
-void Goblin::setPosition(int position) {
-    _position = position;
 }
 
 int Goblin::getAttack() {
@@ -39,35 +35,31 @@ int Goblin::getRange() {
 }
 
 int Goblin::takeDamage(int damage) {
-    if(getHp() < _maxHp*0.5 && cowardice())
+    if (getHp() < _maxHp * 0.5 && cowardice()){
+        std::cout << "MISS" << std::endl;
         return 0;
-    else{
-        _hp-=damage;
+    }
+    else {
+        _hp -= damage;
         return damage;
     }
 }
 
-void Goblin::move(int way) {
-    if(way) _position++;
-    else _position--;
-}
-
 int Goblin::bomb() {
-    if(_bombStatus == 0){
+    if (_bombStatus == 0) {
         std::cout << "bomb is charging" << std::endl;
         _bombStatus++;
         return 0;
-    }
-    else {
+    } else {
         std::cout << "bomb is REAAADY" << std::endl;
         _bombStatus--;
         return 1;
     }
 }
 
-bool Goblin::isDead() {
-    if(getHp() <= 0) return true;
-    else return false;
+void Goblin::getStats() {
+    cout << "hp = " << getHp() << endl;
+    cout << "attack = " << getAttack() << endl;
 }
 
 
