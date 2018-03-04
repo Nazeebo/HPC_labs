@@ -7,10 +7,13 @@
 
 #include <string>
 #include <iostream>
+class Listener{
+public:
+    char letterInForClass();
+    char letterInForAction();
+    char letterInForWay();
+};
 
-char letterInForClass();
-char letterInForAction();
-char letterInForWay();
 
 
 #endif //LAB_8_HELPING_FUNCS_H

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "action.h"
+#include "game_controller.h"
 
 using namespace std;
 int main() {

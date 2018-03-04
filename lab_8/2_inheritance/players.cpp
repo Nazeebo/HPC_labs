@@ -2,7 +2,7 @@
 // Created by igor- on 15.02.2018.
 //
 
-#include "game.h"
+#include "players.h"
 
 using namespace std;
 
@@ -66,7 +66,7 @@ void Game::move(int numOfPlayer) {
     switch (possibility) {
         case 2: {
             cout << "You can move forward or backward, type F or B to clarify direction" << endl;
-            direction = letterInForWay();
+            direction = listener.letterInForWay();
             if (direction == 'F') moveForward(numOfPlayer, pos1, pos2);
             else if (direction == 'B') moveBackward(numOfPlayer, pos1, pos2);
             break;

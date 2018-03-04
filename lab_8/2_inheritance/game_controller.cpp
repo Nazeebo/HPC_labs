@@ -2,7 +2,7 @@
 // Created by igor- on 28.02.2018.
 //
 
-#include "action.h"
+#include "game_controller.h"
 
 using namespace std;
 
@@ -11,7 +11,7 @@ Action::Action() {
     Hero **players = new Hero *[2];
     for (int i = 0; i < 2; i++) {
         cout << "Player" << i + 1 << " pick your character: type K for Knight, M for Mage or G for Goblin" << endl;
-        letters[i] = letterInForClass();
+        letters[i] = listener.letterInForClass();
 
         if (letters[i] == 'K') players[i] = new Knight();
         else if (letters[i] == 'M') players[i] = new Mage();
@@ -28,7 +28,7 @@ void Action::turns() {
         for (int i = 0; i < 2; i++) {
             cout << "Player" << i + 1 << " choose your action: type M to move, A to attack or S to use your skill"
                  << endl;
-            action = letterInForAction();
+            action = listener.letterInForAction();
             if (action == 'A') game.attack(i);
             else if (action == 'M') game.move(i + 1);
             else if (action == 'S') game.skill(i);

@@ -4,7 +4,7 @@
 
 #ifndef INC_2_INHERITANCE_ACTION_H
 #define INC_2_INHERITANCE_ACTION_H
-#include "game.h"
+#include "players.h"
 
 class Action {
 public:
@@ -12,6 +12,7 @@ public:
     void turns();
 private:
     Game game;
+    Listener listener;
 };
 
 #endif //INC_2_INHERITANCE_ACTION_H

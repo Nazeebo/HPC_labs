@@ -6,7 +6,7 @@
 #define LAB_8_GAME_H
 #include "characters/hero.h"
 #include <iostream>
-#include "helping_funcs.h"
+#include "listener.h"
 #include "characters/goblin.h"
 #include "characters/mage.h"
 #include "characters/knight.h"
@@ -27,6 +27,7 @@ class Game {
     private:
         Hero** players = new Hero*[2];
         int arena[7];
+        Listener listener;
 };
 
 

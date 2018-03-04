@@ -2,10 +2,10 @@
 // Created by igor- on 18.02.2018.
 //
 
-#include "helping_funcs.h"
+#include "listener.h"
 
 
-char letterInForClass() {
+char Listener::letterInForClass() {
     char choice;
     bool flag = false;
     while (1) {
@@ -17,7 +17,7 @@ char letterInForClass() {
     return choice;
 }
 
-char letterInForAction() {
+char Listener::letterInForAction() {
     char choice;
     bool flag = false;
     while (1) {
@@ -29,7 +29,7 @@ char letterInForAction() {
     return choice;
 }
 
-char letterInForWay() {
+char Listener::letterInForWay() {
     char choice;
     bool flag = false;
     while (1) {
