@@ -11,6 +11,7 @@ char Listener::letterInForClass() {
         scanf("%c", &choice);
         if (choice == 'K' || choice == 'M' || choice == 'G')
             break;
+        else std::cout << "Wrong input, try again" << std::endl;
     }
     return choice;
 }
@@ -21,6 +22,7 @@ char Listener::letterInForAction() {
         scanf("%c", &choice);
         if (choice == 'A' || choice == 'S' || choice == 'M')
             break;
+        else std::cout << "Wrong input, try again" << std::endl;
     }
     return choice;
 }
@@ -31,6 +33,7 @@ char Listener::letterInForWay() {
         scanf("%c", &choice);
         if (choice == 'F' || choice == 'B')
             break;
+        else std::cout << "Wrong input, try again" << std::endl;
     }
     return choice;
 }
