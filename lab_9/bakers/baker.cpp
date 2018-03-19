@@ -55,6 +55,9 @@ Baker &Baker::operator=(const Baker &obj) {
     _professionalism = obj._professionalism;
     _experience = obj._experience;
     _satiety = obj._satiety;
+    for(int i = 0; i < obj._counter; i++)
+       pies[i] = obj.pies[i];
+    _counter = obj._counter;
     return *this;
 }
 
