@@ -13,7 +13,6 @@ class Pie {
     public:
         Pie();
         Pie(int taste);
-        Pie(std::string name);
         Pie(std::string name, int taste);
         Pie(const Pie &obj);
 
@@ -21,7 +20,7 @@ class Pie {
         static Pie comparePie(const Pie &a, const Pie &b);
 
         void setTaste(int taste);
-        int getTaste()const ;
+        int Taste()const ;
         std::string getName()const;
 
         Pie& operator= (const Pie& obj);

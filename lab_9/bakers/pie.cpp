@@ -46,16 +46,12 @@ Pie::Pie(int taste) {
     cout << "Pie's Constructor was called" << endl;
 }
 
-Pie::Pie(string name) {
-    _name = name;
-    _taste = getTaste();
-    count++;
-    cout << "Pie's Constructor was called" << endl;
-}
 
-Pie::Pie(string name, int taste) {
+Pie::Pie(string name, int taste = -1) {
     _name = name;
-    _taste = taste;
+    if(taste == -1)
+        _taste = getTaste();
+    else _taste = taste;
     count++;
     cout << "Pie's Constructor was called" << endl;
 }
@@ -64,7 +60,7 @@ Pie::~Pie() {
     cout << "Pie's Destructor was called" << endl;
 }
 
-int Pie::getTaste() const {
+int Pie::Taste() const {
     return _taste;
 }
 

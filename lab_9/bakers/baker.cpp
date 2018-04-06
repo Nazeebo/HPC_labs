@@ -42,7 +42,7 @@ void Baker::givePie(Baker &baker) {
 }
 
 void Baker::eatPie() {
-    _satiety+=pies[--this->_counter].getTaste();
+    _satiety+=pies[--this->_counter].Taste();
     if(_satiety>100)_satiety=100;
 }
 
@@ -55,9 +55,6 @@ Baker &Baker::operator=(const Baker &obj) {
     _professionalism = obj._professionalism;
     _experience = obj._experience;
     _satiety = obj._satiety;
-    for(int i = 0; i < obj._counter; i++)
-       pies[i] = obj.pies[i];
-    _counter = obj._counter;
     return *this;
 }
 
