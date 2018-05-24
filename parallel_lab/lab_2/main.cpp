@@ -38,9 +38,11 @@ void func(const int number, threadsave_stack<int> &st) {
             st.push(data);
             log << "Pushed " << data << std::endl;
         } else if (action == "pop") {
-            shared_ptr<int> value;
-            st.pop_top(&value);
-            log << "Poped " << value.get() << endl;
+            shared_ptr<int> data = st.pop_top();
+            if(data != nullptr){
+                int* value = data.get();
+                log << "Poped " << *value  << endl;
+            }
         }
 
     }

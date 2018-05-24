@@ -14,6 +14,12 @@ class thread_guard{
             processes.push_back(move(obj));
         }
 
+        void allJoin(){  //wait
+            for(int i = 0; i < processes.size();i++)
+                if(processes[i].joinable())
+                    processes[i].join();
+        }
+
         ~thread_guard(){
             for(int i = 0; i < processes.size();i++)
                 if(processes[i].joinable())
@@ -42,7 +48,7 @@ int main() {
         g.addThread(move(t));
     }
 
-    //delete[] &g;
+    g.allJoin();
 
     for(int i = 0; i < nThreads; i++){
         sum += result[i];

@@ -13,19 +13,19 @@ private:
     stack<Data> _data;
     std::mutex _m;
 public:
-    shared_ptr<Data> pop_top(shared_ptr<Data> *data) {
-        std::lock_guard<std::mutex> lock(_m);
+    shared_ptr<Data> pop_top() {
+        lock_guard<std::mutex> lock(_m);
         if (_data.empty()) {
-            data = nullptr;
+            return nullptr;
         } else {
-            *data = make_shared<Data>(_data.top());
+            shared_ptr<Data> tmp = make_shared<Data>(_data.top());
             _data.pop();
+            return tmp;
         }
-
     }
 
     void push(Data value) {
-        std::lock_guard<std::mutex> lock(_m);
+        lock_guard<std::mutex> lock(_m);
         _data.push(value);
     }
 };
