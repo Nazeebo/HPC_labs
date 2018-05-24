@@ -12,6 +12,7 @@
 #include <mutex>
 #include <fstream>
 #include <string>
+#include <cstdio>
 
 using std::thread;
 using std::vector;
@@ -22,6 +23,7 @@ using std::ofstream;
 using std::endl;
 using std::string;
 using std::make_shared;
+using std::to_string;
 
 #endif //INC_2_THREADGUARDED_STACK_DEFINES_H
 

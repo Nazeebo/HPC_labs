@@ -24,70 +24,35 @@ public:
 };
 
 
-void func(const int number, threadsave_stack st) {
-    string action;
+void func(const int number, threadsave_stack<int>& st) {
+    string action, input = "filex.txt", logs = "logx.txt";
     int data;
-    if (number == 1) {
-        ifstream in("file1.txt");
-        ofstream log("log1.txt");
-        while (!in.eof()) {
-            in >> action;
-            if (action == "push") {
-                in >> data;
-                //st.push(Data(data));
-                st.push(data);
-                log << "Pushed " << data << std::endl;
-            }
-
-            else if (action == "pop"){
-                shared_ptr<Data> value = st.pop_top();
-                log << "Poped " << value->data() << endl;
-            }
-
+    input.replace(4,1,to_string(number));
+    logs.replace(3,1,to_string(number));
+    ifstream in(input);
+    ofstream log(logs);
+    while (!in.eof()) {
+        in >> action;
+        if (action == "push") {
+            in >> data;
+            st.push(data);
+            log << "Pushed " << data << std::endl;
+        } else if (action == "pop") {
+            shared_ptr<int> value = st.pop_top();
+            log << "Poped " << value.get() << endl;
         }
-    } else if (number == 2) {
-        ifstream in("file2.txt");
-        ofstream log("log2.txt");
-        while (!in.eof()) {
-            in >> action;
-            if (action == "push") {
-                in >> data;
-                //st.push(Data(data));
-                st.push(data);
-                log << "Pushed " << data << std::endl;
-            } else if (action == "pop") {
-                shared_ptr<Data> value = st.pop_top();
-                log << "Poped " << value->data() << endl;
-            }
-        }
+
     }
-    else if (number == 3) {
-            ifstream in("file3.txt");
-            ofstream log("log3.txt");
-            while (!in.eof()) {
-                in >> action;
-                if (action == "push") {
-                    in >> data;
-                    //st.push(Data(data));
-                    st.push(data);
-                    log << "Pushed " << data << std::endl;
-                } else if (action == "pop") {
-                    shared_ptr<Data> value = st.pop_top();
-                    log << "Poped " << value->data() << endl;
-                }
-            }
-        }
 
 }
 
 int main() {
     thread_guard g;
-    threadsave_stack st;
+    threadsave_stack<int> st;
     for (int i = 0; i < 3; i++) {
         thread t(func, i, std::ref(st));
         g.addThread(move(t));
     }
-
 
     return 0;
 }
