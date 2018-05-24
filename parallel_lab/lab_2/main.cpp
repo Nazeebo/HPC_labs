@@ -24,11 +24,11 @@ public:
 };
 
 
-void func(const int number, threadsave_stack<int>& st) {
+void func(const int number, threadsave_stack<int> &st) {
     string action, input = "filex.txt", logs = "logx.txt";
     int data;
-    input.replace(4,1,to_string(number));
-    logs.replace(3,1,to_string(number));
+    input.replace(4, 1, to_string(number));
+    logs.replace(3, 1, to_string(number));
     ifstream in(input);
     ofstream log(logs);
     while (!in.eof()) {
@@ -38,7 +38,8 @@ void func(const int number, threadsave_stack<int>& st) {
             st.push(data);
             log << "Pushed " << data << std::endl;
         } else if (action == "pop") {
-            shared_ptr<int> value = st.pop_top();
+            shared_ptr<int> value;
+            st.pop_top(&value);
             log << "Poped " << value.get() << endl;
         }
 

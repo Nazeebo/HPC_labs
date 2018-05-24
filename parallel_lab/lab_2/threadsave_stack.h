@@ -7,22 +7,19 @@
 
 #include "defines.h"
 
-template <class Data>
+template<class Data>
 class threadsave_stack {
 private:
     stack<Data> _data;
     std::mutex _m;
 public:
-    shared_ptr<Data> pop_top() {
-        shared_ptr<Data> data;
+    shared_ptr<Data> pop_top(shared_ptr<Data> *data) {
         std::lock_guard<std::mutex> lock(_m);
-        if(_data.empty()){
-            return nullptr;
-        }
-        else {
-            data = make_shared<Data>(_data.top());
+        if (_data.empty()) {
+            data = nullptr;
+        } else {
+            *data = make_shared<Data>(_data.top());
             _data.pop();
-            return data;
         }
 
     }
