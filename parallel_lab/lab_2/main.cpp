@@ -36,12 +36,12 @@ void func(const int number, threadsave_stack<int> &st) {
         if (action == "push") {
             in >> data;
             st.push(data);
-            log << "Pushed " << data << std::endl;
+            log << "Pushed " << data << endl;
         } else if (action == "pop") {
             shared_ptr<int> data = st.pop_top();
-            if(data != nullptr){
-                int* value = data.get();
-                log << "Poped " << *value  << endl;
+            if (data != nullptr) {
+                int *value = data.get();
+                log << "Poped " << *value << endl;
             }
         }
 
@@ -53,7 +53,7 @@ int main() {
     thread_guard g;
     threadsave_stack<int> st;
     for (int i = 0; i < 3; i++) {
-        thread t(func, i, std::ref(st));
+        thread t(func, i, ref(st));
         g.addThread(move(t));
     }
 

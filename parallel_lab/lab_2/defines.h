@@ -25,6 +25,7 @@ using std::string;
 using std::make_shared;
 using std::to_string;
 using std::lock_guard;
+using std::ref;
 
 #endif //INC_2_THREADGUARDED_STACK_DEFINES_H
 
